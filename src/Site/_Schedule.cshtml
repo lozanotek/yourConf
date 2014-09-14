@@ -1,0 +1,44 @@
+﻿@{
+     var confDay = this.Model as ConfDay;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:20%;">Time</th>
+            <th>Session/Topic</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var session in confDay.Sessions) {
+            var confTime = session.GetSessionTime(confDay);
+            var attendeeTime = session.ToAttendeeTime(confDay);
+        <tr>
+            <td>
+                <p>@confTime.ToShortTimeString() (PDT)</p>
+                <p>@attendeeTime.ToShortTimeString() (GMT)</p>
+            </td>
+            <td>
+                <div class="speaker-info">
+                    <h4>@session.Title</h4>
+
+                    <span class="company-name">
+                        @if(session.HasSpeakerBio()) {
+                            foreach(var speaker in session.Speakers){
+                            <a class="speaker-website" href="/speakers/@speaker.Id">@speaker.Name</a><text>&nbsp;&nbsp;</text>
+                        }
+                        } else {
+                            foreach(var speaker in session.Speakers) {
+                            <strong class="speaker-website">@speaker.Name</strong>
+                        }
+                    }
+                </span>
+                <br /><br />
+                <p>@session.Abstract</p>
+            </div>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+<p></p><p></p>

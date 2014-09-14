@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    var speakerId = UrlData[0];
+
+    Speaker foundSpeaker = null;
+    if(!string.IsNullOrEmpty(speakerId)) {
+        foundSpeaker = Speakers.GetSpeakers().FirstOrDefault(s => s.Id == speakerId);
+    }
+}
+
+@if(foundSpeaker != null) {
+    var picPath = string.IsNullOrEmpty(foundSpeaker.Picture) ? 
+        "//cdn.geekstati.co/dotnetConf/img/speakers/avatar-64.png" : 
+        foundSpeaker.Picture;
+
+    <div id="container">
+        <div id="speakers">
+            <div class="speaker">
+                <img src="@picPath" width="100" height="100" />
+
+                <div class="speaker-info">
+                    <h3><span class="first-name">@foundSpeaker.FirstName</span> @foundSpeaker.LastName</h3>
+
+                    <span class="company-name"></span>
+
+                    @if(!string.IsNullOrEmpty(foundSpeaker.Website)) {
+                        <a class="speaker-website" href="@foundSpeaker.Website" target="_blank"><span>@foundSpeaker.Website.Replace("http://", "")</span></a>
+                    }
+                    <p>@foundSpeaker.Bio</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="body">Finished checking out the Pros?  Go checkout the <a href="/">sessions one more time.</a></p>
+    </div>
+}
+else {
+    <div id="container">
+        <h2>Conference Speakers</h2>
+        <div id="speakers">
+            @foreach(var speaker in Speakers.GetSpeakers()) {
+                var picPath = string.IsNullOrEmpty(speaker.Picture) ?
+                    "//cdn.geekstati.co/dotnetConf/img/speakers/avatar-64.png" : 
+                            speaker.Picture;
+                <div class="speaker">
+                    <img src="@picPath" width="100" height="100" alt="@speaker.Name" />
+
+                    <div class="speaker-info">
+                        <h3><span class="first-name">@speaker.FirstName</span> @speaker.LastName</h3>
+                        <span class="company-name"></span>
+                        @if(!string.IsNullOrEmpty(speaker.Website)) {
+                        <a class="speaker-website" href="@speaker.Website" target="_blank"><span>@speaker.Website.Replace("http://", "")</span></a>
+                        }
+                        <p>@speaker.Bio</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

@@ -1,12 +1,12 @@
 ﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    //var videoUrl = Player.GetVideoUrl();
+    var confDay = Schedule.GetConfDay(1);
 }
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>youConf</title>
-    </head>
-    <body>
-        <h2>yourConf</h2>
-    </body>
-</html>
+
+<div id="container">
+    @*@if(!string.IsNullOrEmpty(videoUrl)) {
+        <iframe src="@videoUrl" seamless="seamless" frameborder="0" marginheight="0" marginwidth="0" id="videoPlayer"></iframe>
+    }*@
+    @RenderPage("_Schedule.cshtml", confDay)
+</div>

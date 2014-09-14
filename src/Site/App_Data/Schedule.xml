@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Conference>
+    <Day id="1" date="2014-06-25">
+        <Session hour="09:00">
+            <Title>Keynote</Title>
+            <Abstract>Awesome Azure goodness being revealed!</Abstract>
+            <Speaker>
+                <Id>scott-guthrie</Id>
+                <Name>Scott Guthrie</Name>
+            </Speaker>
+        </Session>
+        <Session hour="10:00">
+            <Title>ASP.NET Epicness</Title>
+            <Abstract>The web will not be the same...ever.</Abstract>
+            <Speaker>
+                <Name>Scott Hunter</Name>
+                <Id>scott-hunter</Id>
+            </Speaker>
+        </Session>
+        <Session hour="11:00">
+            <Title>.NET Edutainment</Title>
+            <Abstract>Lots of fun content you want to know.</Abstract>
+            <Speaker>
+                <Name>Scott Hanselman</Name>
+                <Id>scott-hanselman</Id>
+            </Speaker>
+        </Session>
+    </Day>
+</Conference>
