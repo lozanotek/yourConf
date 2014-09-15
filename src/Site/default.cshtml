@@ -4,14 +4,44 @@
     var confDay = Schedule.GetConfDay(1);
 }
 
+
+@section scripts {
+    <script type="text/javascript" src="//yourconf-videos.azurewebsites.net/scripts/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//yourconf-videos.azurewebsites.net/scripts/jquery.signalR-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//yourconf-videos.azurewebsites.net/signalr/hubs"></script>
+
+    <script type="text/javascript">
+        function setVideoPlayer(videoId) {
+            var videoUrl = "http://www.youtube.com/embed/" + videoId + "?autoplay=1"
+            $("#youtube").attr("src", videoUrl);
+        }
+        
+        $(function () {
+            $.connection.hub.url = "http://yourconf-videos.azurewebsites.net/signalr"
+            $.connection.hub.start();
+
+            var videoPlayer = $.connection.videoHub;    
+            videoPlayer.client.playVideo = function (videoId) {
+                setVideoPlayer(videoId);
+            };
+
+            $.connection.hub.disconnected(function () {
+                setTimeout(function () {
+                    $.connection.hub.start();
+                }, 5000);
+            });
+        });
+    </script>
+}
 <div id="container">
     <br />
+
     @if(!string.IsNullOrEmpty(videoUrl)) {
-    <div id="playerContainer">
-        <div class="embed-container">
-            <iframe id="youtube" width="470" height="264" src="@videoUrl" frameborder="0" allowfullscreen=""></iframe>
+        <div id="playerContainer">
+            <div class="embed-container">
+                <iframe id="youtube" width="470" height="264" src="@videoUrl" frameborder="0" allowfullscreen=""></iframe>
+            </div>
         </div>
-    </div>
     }
     <br />
     @RenderPage("_Schedule.cshtml", confDay)
