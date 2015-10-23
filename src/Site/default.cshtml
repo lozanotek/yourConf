@@ -6,9 +6,9 @@
 
 
 @section scripts {
-    <script type="text/javascript" src="//yourconf-videos.azurewebsites.net/scripts/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="//yourconf-videos.azurewebsites.net/scripts/jquery.signalR-2.1.1.min.js"></script>
-    <script type="text/javascript" src="//yourconf-videos.azurewebsites.net/signalr/hubs"></script>
+    <script type="text/javascript" src="//videos.yourconf.net/scripts/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//videos.yourconf.net/scripts/jquery.signalR-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//videos.yourconf.net/signalr/hubs"></script>
 
     <script type="text/javascript">
         function setVideoPlayer(videoId) {
@@ -17,7 +17,7 @@
         }
         
         $(function () {
-            $.connection.hub.url = "http://yourconf-videos.azurewebsites.net/signalr"
+            $.connection.hub.url = "http://videos.yourconf.net/signalr"
             $.connection.hub.start();
 
             var videoPlayer = $.connection.videoHub;    
